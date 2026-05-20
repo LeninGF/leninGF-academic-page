@@ -79,11 +79,66 @@ The journal file was named `session-journal.md` at the user's initiative. The us
 | `templates/cv.html` | Created — Education and experience timeline |
 | `session-journal.md` | Created — This file |
 
-## How to Run
+---
+
+## Session 2 — 2026-05-20: Git Setup, Static Build, and Deployment Planning
+
+### 10. Git Initialization & First Commit
+- Repository initialized with `git init`.
+- `.gitignore` added for `__pycache__/`.
+- Initial commit `d320d09` with message `leninGF-academic-page`.
+- Remote added (`https://github.com/LeninGF/leninGF-academic-page.git`) and pushed to `master`.
+
+### 11. GitHub Pages Feasibility
+- Flask is a server-side Python app — **cannot run directly** on GitHub Pages (static only).
+- Two deployment options identified:
+  - **Render.com** — runs the full Flask app (free tier, URL: `https://lenin-gf-academic-page.onrender.com`)
+  - **GitHub Pages** — pre-rendered static snapshot (URL: `https://leningf.github.io/leninGF-academic-page/`)
+
+### 12. Static Build Script (`build_static.py`)
+- Created a build script that pre-renders all Flask Jinja2 templates into plain HTML using `app.test_request_context()`.
+- Output goes to `_site/` directory (added to `.gitignore` so the Flask repo stays clean).
+- The Flask app (`app.py`) remains unchanged — both deployment methods coexist.
+- Run with: `python build_static.py`
+
+### 13. Files Added
+| File | Action |
+|---|---|
+| `README.md` | Created — project description and local dev instructions |
+| `TODO.org` | Created — Emacs org file with pending deployment tasks |
+| `build_static.py` | Created — pre-renders Flask templates to `_site/` |
+| `requirements.txt` | Modified — added `gunicorn==23.0.0` for Render |
+
+### Files (as of commit `8292341`)
+
+```
+.gitignore
+README.md
+TODO.org
+app.py
+build_static.py
+requirements.txt
+session-journal.md
+static/style.css
+templates/base.html
+templates/cv.html
+templates/index.html
+templates/publications.html
+templates/research.html
+```
+
+## How to Run (Flask)
 
 ```bash
 cd /home/leningfe/PythonProjects/agentic-ai-tests/leninGF-academic-page
-pip install flask
+pip install -r requirements.txt
 python app.py
 # Opens at http://localhost:5000
+```
+
+## How to Build Static Site
+
+```bash
+python build_static.py
+# Output: ./_site/ (4 HTML pages + static/)
 ```
