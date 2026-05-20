@@ -1,0 +1,15 @@
+#+TITLE: leninGF-academic-page — Pending Tasks
+
+* TODO Deploy to Render.com (Flask app)
+  - Create account on https://render.com
+  - Connect GitHub repo
+  - Select "Web Service" → Python
+  - Set start command: +gunicorn app:app+
+  - Add +gunicorn+ to requirements.txt
+  - URL example: https://lenin-gf-academic-page.onrender.com
+
+* TODO Deploy to GitHub Pages (static site)
+  - Run +python build_static.py+ to regenerate static files
+  - Push the +_site/+ folder to a +gh-pages+ branch
+  - Enable GitHub Pages in repo Settings → Pages → branch: +gh-pages+
+  - URL: https://leningf.github.io/leninGF-academic-page/
