@@ -109,6 +109,11 @@ The journal file was named `session-journal.md` at the user's initiative. The us
 | `build_static.py` | Created — pre-renders Flask templates to `_site/` |
 | `requirements.txt` | Modified — added `gunicorn==23.0.0` for Render |
 
+### 14. Branch Rename: `master` → `main`
+- Local branch renamed from `master` to `main` (`git branch -m master main`).
+- Pushed `main` to GitHub (`origin/main`).
+- GitHub default branch still points to `master` — must be changed manually in **Settings → Branches** on GitHub.
+
 ### Files (as of commit `8292341`)
 
 ```
