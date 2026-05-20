@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV — Lenin G. Falconi</title>
+    <link rel="stylesheet" href="http://localhost:5000/static/style.css">
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🎓</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="avatar">LF</div>
+                <h1 class="name">Lenin G. Falconi</h1>
+                <p class="affiliation">Escuela Politécnica Nacional</p>
+                <p class="dept">Department of Informatics and Computer Sciences</p>
+                <p class="location">Quito, Ecuador</p>
+
+                <div class="links">
+                    
+                    <a href="mailto:lenin.falconi@epn.edu.ec" class="link-item" title="Email">
+                        <span class="link-icon">✉</span> Email
+                    </a>
+                    
+                    <a href="https://orcid.org/0000-0003-4402-6643" class="link-item" target="_blank" rel="noopener">
+                        <span class="link-icon">🔬</span> ORCID
+                    </a>
+                    <a href="https://github.com/LeninGF" class="link-item" target="_blank" rel="noopener">
+                        <span class="link-icon">🐙</span> GitHub
+                    </a>
+                    
+                    <a href="https://scholar.google.com/citations?user=4Xk02pkAAAAJ&amp;hl=en&amp;oi=ao" class="link-item" target="_blank" rel="noopener">
+                        <span class="link-icon">📚</span> Google Scholar
+                    </a>
+                    
+                    
+                    <a href="https://www.linkedin.com/in/lenin-g-falconi" class="link-item" target="_blank" rel="noopener">
+                        <span class="link-icon">🔗</span> LinkedIn
+                    </a>
+                    
+                    
+                    <a href="https://www.researchgate.net/profile/Lenin-Falconi" class="link-item" target="_blank" rel="noopener">
+                        <span class="link-icon">📊</span> ResearchGate
+                    </a>
+                    
+                </div>
+            </div>
+
+            <nav class="nav">
+                <a href="http://localhost:5000/" class="nav-item ">Home</a>
+                <a href="http://localhost:5000/research" class="nav-item ">Research</a>
+                <a href="http://localhost:5000/publications" class="nav-item ">Publications</a>
+                <a href="http://localhost:5000/cv" class="nav-item active">CV</a>
+            </nav>
+
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="theme-btn" title="Toggle dark/light mode">
+                <span id="theme-icon">🌙</span> <span id="theme-label">Dark</span>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            
+<h2>Curriculum Vitae</h2>
+
+<h3>Education</h3>
+<div class="cv-section">
+
+    <div class="cv-entry">
+        <div class="cv-head">
+            <strong>PhD in Computer Science</strong>
+            <span class="cv-period">2021 – Present</span>
+        </div>
+        <div class="cv-sub">Escuela Politécnica Nacional</div>
+        <div class="cv-note">Focus: Medical imaging and deep learning for breast cancer diagnosis.</div>
+    </div>
+
+    <div class="cv-entry">
+        <div class="cv-head">
+            <strong>MSc in Computer Science</strong>
+            <span class="cv-period">2018 – 2020</span>
+        </div>
+        <div class="cv-sub">Escuela Politécnica Nacional</div>
+        
+    </div>
+
+    <div class="cv-entry">
+        <div class="cv-head">
+            <strong>Electronic Engineering (Automation)</strong>
+            <span class="cv-period">2007 – 2013</span>
+        </div>
+        <div class="cv-sub">Escuela Politécnica Nacional</div>
+        
+    </div>
+
+</div>
+
+<h3>Professional Experience</h3>
+<div class="cv-section">
+
+    <div class="cv-entry">
+        <div class="cv-head">
+            <strong>Part-time Professor</strong>
+            <span class="cv-period">2024 – Present</span>
+        </div>
+        <div class="cv-sub">Dept. of Informatics and Computer Sciences, EPN</div>
+        
+    </div>
+
+    <div class="cv-entry">
+        <div class="cv-head">
+            <strong>Developer / NLP Researcher</strong>
+            <span class="cv-period">2021 – 2024</span>
+        </div>
+        <div class="cv-sub">Fiscalía General del Estado, Ecuador</div>
+        <div class="cv-note">Developed a large language model for classifying robbery categories from text.</div>
+    </div>
+
+    <div class="cv-entry">
+        <div class="cv-head">
+            <strong>Research Assistant</strong>
+            <span class="cv-period">2019 – 2021</span>
+        </div>
+        <div class="cv-sub">Computer Science and Informatics Dept., EPN</div>
+        
+    </div>
+
+</div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Lenin G. Falconi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        (function() {
+            const btn = document.getElementById('theme-toggle');
+            const icon = document.getElementById('theme-icon');
+            const label = document.getElementById('theme-label');
+            const stored = localStorage.getItem('theme');
+
+            function apply(theme) {
+                if (theme === 'dark') {
+                    document.body.classList.add('dark');
+                    icon.textContent = '☀️';
+                    label.textContent = 'Light';
+                } else {
+                    document.body.classList.remove('dark');
+                    icon.textContent = '🌙';
+                    label.textContent = 'Dark';
+                }
+                localStorage.setItem('theme', theme);
+            }
+
+            if (stored) {
+                apply(stored);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                apply('dark');
+            }
+
+            btn.addEventListener('click', function() {
+                const next = document.body.classList.contains('dark') ? 'light' : 'dark';
+                apply(next);
+            });
+        })();
+    </script>
+</body>
+</html>
