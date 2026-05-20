@@ -41,6 +41,14 @@ def build():
     # Copy static files
     shutil.copytree(STATIC_SRC, os.path.join(SITE_DIR, "static"))
 
+    # Map route names to the actual static filenames for GitHub Pages
+    ROUTE_TO_FILE = {
+        "index":        "index.html",
+        "research":     "research.html",
+        "publications": "publications.html",
+        "cv":           "cv.html",
+    }
+
     # Render each page
     with _app.app_context():
         for name, info in ROUTES.items():
@@ -53,6 +61,13 @@ def build():
                 experience=EXPERIENCE,
                 active=info["active"],
             )
+            # Replace Flask url_for paths (/research → research.html, etc.)
+            for route_name, filename in ROUTE_TO_FILE.items():
+                html = html.replace(f'href="http://localhost:5000/{route_name}"', f'href="{filename}"')
+                html = html.replace(f'http://localhost:5000/{route_name}', filename)
+            # Replace remaining localhost references (static, root index)
+            html = html.replace('href="http://localhost:5000/"', 'href="index.html"')
+            html = html.replace('http://localhost:5000/', '')
             out_path = os.path.join(SITE_DIR, info["path"])
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(html)
