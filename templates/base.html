@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Lenin G. Falconi{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🎓</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="avatar">LF</div>
+                <h1 class="name">{{ profile.name_short }}</h1>
+                <p class="affiliation">{{ profile.affiliation }}</p>
+                <p class="dept">{{ profile.department }}</p>
+                <p class="location">{{ profile.location }}</p>
+
+                <div class="links">
+                    {% if profile.email %}
+                    <a href="mailto:{{ profile.email }}" class="link-item" title="Email">
+                        <span class="link-icon">✉</span> Email
+                    </a>
+                    {% endif %}
+                    <a href="https://orcid.org/{{ profile.orcid }}" class="link-item" target="_blank" rel="noopener">
+                        <span class="link-icon">🔬</span> ORCID
+                    </a>
+                    <a href="https://github.com/{{ profile.github }}" class="link-item" target="_blank" rel="noopener">
+                        <span class="link-icon">🐙</span> GitHub
+                    </a>
+                    {% if profile.scholar %}
+                    <a href="{{ profile.scholar }}" class="link-item" target="_blank" rel="noopener">
+                        <span class="link-icon">📚</span> Google Scholar
+                    </a>
+                    {% endif %}
+                    {% if profile.linkedin %}
+                    <a href="{{ profile.linkedin }}" class="link-item" target="_blank" rel="noopener">
+                        <span class="link-icon">🔗</span> LinkedIn
+                    </a>
+                    {% endif %}
+                    {% if profile.researchgate %}
+                    <a href="{{ profile.researchgate }}" class="link-item" target="_blank" rel="noopener">
+                        <span class="link-icon">📊</span> ResearchGate
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <nav class="nav">
+                <a href="{{ url_for('index') }}" class="nav-item {% if active == 'home' %}active{% endif %}">Home</a>
+                <a href="{{ url_for('research') }}" class="nav-item {% if active == 'research' %}active{% endif %}">Research</a>
+                <a href="{{ url_for('publications') }}" class="nav-item {% if active == 'publications' %}active{% endif %}">Publications</a>
+                <a href="{{ url_for('cv') }}" class="nav-item {% if active == 'cv' %}active{% endif %}">CV</a>
+            </nav>
+
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="theme-btn" title="Toggle dark/light mode">
+                <span id="theme-icon">🌙</span> <span id="theme-label">Dark</span>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Lenin G. Falconi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        (function() {
+            const btn = document.getElementById('theme-toggle');
+            const icon = document.getElementById('theme-icon');
+            const label = document.getElementById('theme-label');
+            const stored = localStorage.getItem('theme');
+
+            function apply(theme) {
+                if (theme === 'dark') {
+                    document.body.classList.add('dark');
+                    icon.textContent = '☀️';
+                    label.textContent = 'Light';
+                } else {
+                    document.body.classList.remove('dark');
+                    icon.textContent = '🌙';
+                    label.textContent = 'Dark';
+                }
+                localStorage.setItem('theme', theme);
+            }
+
+            if (stored) {
+                apply(stored);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                apply('dark');
+            }
+
+            btn.addEventListener('click', function() {
+                const next = document.body.classList.contains('dark') ? 'light' : 'dark';
+                apply(next);
+            });
+        })();
+    </script>
+</body>
+</html>

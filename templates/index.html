@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Lenin G. Falconi — Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h2>About Me</h2>
+    {% for para in profile.bio_paragraphs %}
+    <p>{{ para }}</p>
+    {% endfor %}
+</section>
+
+<section class="highlight">
+    <h2>Current Research Focus</h2>
+    <p>
+        My PhD research targets <strong>image segmentation for thermogram and
+        mammogram images</strong> applied to breast cancer diagnosis. I leverage
+        deep learning and transfer learning techniques to build robust models
+        that work effectively on medical imaging datasets where annotated
+        samples are scarce.
+    </p>
+</section>
+
+<section class="news">
+    <h2>Quick Links</h2>
+    <div class="cards">
+        <a href="{{ url_for('publications') }}" class="card">
+            <h3>Publications</h3>
+            <p>3 peer-reviewed papers on mammogram classification using deep transfer learning.</p>
+        </a>
+        <a href="{{ url_for('research') }}" class="card">
+            <h3>Research Interests</h3>
+            <p>Medical image segmentation, deep learning, computer vision, and NLP.</p>
+        </a>
+        <a href="{{ url_for('cv') }}" class="card">
+            <h3>Curriculum Vitae</h3>
+            <p>Full academic and professional background.</p>
+        </a>
+    </div>
+</section>
+{% endblock %}

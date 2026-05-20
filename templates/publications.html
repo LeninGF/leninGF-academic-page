@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Publications — Lenin G. Falconi{% endblock %}
+
+{% block content %}
+<h2>Publications</h2>
+
+{% set journals = publications | selectattr('type', 'equalto', 'journal') | list %}
+{% set conferences = publications | selectattr('type', 'equalto', 'conference') | list %}
+
+{% if journals %}
+<h3>Journal Articles</h3>
+<ol class="pub-list">
+{% for pub in journals %}
+    <li class="pub-item">
+        <span class="pub-title">{{ pub.title }}</span>
+        <span class="pub-authors">{{ pub.authors }}</span>
+        <span class="pub-venue">
+            <em>{{ pub.venue }}</em>{% if pub.volume %}, {{ pub.volume }}{% endif %}, {{ pub.year }}.
+        </span>
+        <span class="pub-links">
+            <a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">DOI: {{ pub.doi }}</a>
+        </span>
+    </li>
+{% endfor %}
+</ol>
+{% endif %}
+
+{% if conferences %}
+<h3>Conference Proceedings</h3>
+<ol class="pub-list">
+{% for pub in conferences %}
+    <li class="pub-item">
+        <span class="pub-title">{{ pub.title }}</span>
+        <span class="pub-authors">{{ pub.authors }}</span>
+        <span class="pub-venue">
+            <em>{{ pub.venue }}</em>{% if pub.volume %}, {{ pub.volume }}{% endif %}, {{ pub.year }}.
+        </span>
+        <span class="pub-links">
+            <a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">DOI: {{ pub.doi }}</a>
+        </span>
+    </li>
+{% endfor %}
+</ol>
+{% endif %}
+
+{% if not publications %}
+<p>No publications listed yet.</p>
+{% endif %}
+{% endblock %}

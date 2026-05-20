@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}CV — Lenin G. Falconi{% endblock %}
+
+{% block content %}
+<h2>Curriculum Vitae</h2>
+
+<h3>Education</h3>
+<div class="cv-section">
+{% for item in education %}
+    <div class="cv-entry">
+        <div class="cv-head">
+            <strong>{{ item.degree }}</strong>
+            <span class="cv-period">{{ item.period }}</span>
+        </div>
+        <div class="cv-sub">{{ item.school }}</div>
+        {% if item.note %}<div class="cv-note">{{ item.note }}</div>{% endif %}
+    </div>
+{% endfor %}
+</div>
+
+<h3>Professional Experience</h3>
+<div class="cv-section">
+{% for item in experience %}
+    <div class="cv-entry">
+        <div class="cv-head">
+            <strong>{{ item.role }}</strong>
+            <span class="cv-period">{{ item.period }}</span>
+        </div>
+        <div class="cv-sub">{{ item.place }}</div>
+        {% if item.desc %}<div class="cv-note">{{ item.desc }}</div>{% endif %}
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

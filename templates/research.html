@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Research — Lenin G. Falconi{% endblock %}
+
+{% block content %}
+<h2>Research Interests</h2>
+
+<div class="research-list">
+{% for item in interests %}
+    <div class="research-item">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
