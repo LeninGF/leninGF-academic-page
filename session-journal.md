@@ -112,9 +112,15 @@ The journal file was named `session-journal.md` at the user's initiative. The us
 ### 14. Branch Rename: `master` → `main`
 - Local branch renamed from `master` to `main` (`git branch -m master main`).
 - Pushed `main` to GitHub (`origin/main`).
-- GitHub default branch still points to `master` — must be changed manually in **Settings → Branches** on GitHub.
+- Old `master` branch deleted from GitHub.
 
-### Files (as of commit `8292341`)
+### 15. GitHub Pages Static Site Fix
+- Generated static pages had hardcoded `http://localhost:5000/...` URLs from Flask's `url_for`.
+- **Fix:** Updated `build_static.py` to replace Flask-generated URLs with relative `.html` paths after rendering (e.g., `/publications` → `publications.html`).
+- Pushed static files to `gh-pages` branch (clean: 4 HTML files + `static/style.css` + `.nojekyll`).
+- Site URL (once enabled in Settings): `https://leningf.github.io/leninGF-academic-page/`
+
+### Files (as of commit `8abfe3e`)
 
 ```
 .gitignore
